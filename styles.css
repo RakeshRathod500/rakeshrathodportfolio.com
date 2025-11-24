@@ -240,23 +240,21 @@ body.light-mode .navbar {
 }
 
 .profile-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* border-radius: 22px;
+    width: 200px;       /* reduced from 280px */
+    height: 200px;
+    border-radius: 22px;
     padding: 4px;
     position: relative;
     margin: 0 auto;
-    overflow: hidden !important;
 
     background: linear-gradient(135deg, var(--accent-warm), var(--accent-secondary));
-    box-shadow: 0 0 22px rgba(0,0,0,0.45);
+    box-shadow: 0 0 18px rgba(0,0,0,0.35);
     overflow: hidden;
 
-    transition: 
-        transform 0.5s ease,
-        box-shadow 0.5s ease,
-        filter 0.5s ease; */
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        filter 0.35s ease;
 }
 
 .profile-photo img {
