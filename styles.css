@@ -47,7 +47,57 @@ body {
     overflow-x: hidden;
 }
 
-/* Navbar */
+.nav-links {
+    margin-left: auto;
+}
+
+
+/* Floating 3-dot button */
+.floating-menu-btn {
+    position: fixed;
+    right: 20px;
+    top: 120px;
+    background: var(--accent-warm);
+    color: #000;
+    font-size: 22px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    z-index: 2000;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+}
+
+/* Hidden menu */
+.floating-menu {
+    position: fixed;
+    right: 20px;
+    top: 170px;
+    background: rgba(20,20,20,0.95);
+    border-radius: 12px;
+    padding: 10px 0;
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 2000;
+    width: 160px;
+    border: 1px solid var(--border-color);
+}
+
+/* Menu links */
+.floating-menu a {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.floating-menu a:hover {
+    background: var(--accent-warm);
+    color: #000;
+}
+
+
+Navbar
 .navbar {
     position: fixed;
     top: 0;

@@ -115,3 +115,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 console.log('Portfolio loaded successfully!');
 
+const menuButton = document.getElementById('menuButton');
+const menuDropdown = document.getElementById('menuDropdown');            
+
