@@ -114,3 +114,4 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 console.log('Portfolio loaded successfully!');
+
