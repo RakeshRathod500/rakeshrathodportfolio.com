@@ -1,6 +1,13 @@
 // Theme Toggle
 const themeToggle = document.getElementById('themeToggle');
 const htmlElement = document.documentElement;
+const filterBtns = document.querySelectorAll(".filter-btn")
+const projectCards = document.querySelectorAll(".project-card")
+const kpiButton = document.getElementById("kpi-button");
+const kpiModal = document.getElementById("kpiModal");
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const navLinks = document.getElementById('navLinks');
+
 const body = document.body;
 
 // Check for saved theme preference or default to dark mode
@@ -16,7 +23,30 @@ themeToggle.addEventListener('click', () => {
     localStorage.setItem('theme', theme);
     themeToggle.textContent = theme === 'light' ? '☀️' : '🌙';
 });
+// Open modal
+kpiButton.addEventListener("click", () => {
+  kpiModal.classList.add("open");
+  document.body.style.overflow = "hidden"; // Prevent background scroll
+});
 
+// Close modal when clicking Close button OR outside modal
+document.addEventListener("click", (e) => {
+  if (
+    e.target.matches(".close-modal-btn") ||
+    e.target === kpiModal
+  ) {
+    kpiModal.classList.remove("open");
+    document.body.style.overflow = "auto";
+  }
+});
+
+// Close with Escape key
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && kpiModal.classList.contains("open")) {
+    kpiModal.classList.remove("open");
+    document.body.style.overflow = "auto";
+  }
+});
 // Scroll Animations
 const observerOptions = {
     threshold: 0.1,
@@ -100,7 +130,7 @@ if (contactForm) {
 }
 
 // Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+document.querySelectorAll('a[href="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
         if (href !== '#') {
@@ -112,9 +142,55 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+// Toggle Project Details (Expand/Collapse)
+function toggleProjectDetails(button) {
+  const content = button.nextElementSibling
+  content.classList.toggle("open")
+  button.classList.toggle("open")
+}
 
+// Filter Projects by Category
+filterBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const filter = btn.getAttribute("data-filter")
+
+    // Update active button
+    filterBtns.forEach((b) => b.classList.remove("active"))
+    btn.classList.add("active")
+
+    // Filter projects
+    projectCards.forEach((card) => {
+      if (filter === "all" || card.getAttribute("data-category") === filter) {
+        card.classList.add("show")
+      } else {
+        card.classList.remove("show")
+      }
+    })
+  })
+})
+mobileMenuBtn.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+
+  // Change hamburger to X and back
+  if (navLinks.classList.contains('active')) {
+    mobileMenuBtn.textContent = '☰';
+  } else {
+    mobileMenuBtn.textContent = 'X';
+  }
+});
+
+// Close menu when clicking any link (mobile friendly)
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('active');
+    mobileMenuBtn.textContent = '☰';
+  });
+});
+// On page load: show all projects
+document.addEventListener("DOMContentLoaded", () => {
+  projectCards.forEach((card) => card.classList.add("show"))
+})
 console.log('Portfolio loaded successfully!');
 
-const menuButton = document.getElementById('menuButton');
-const menuDropdown = document.getElementById('menuDropdown');            
+           
 
